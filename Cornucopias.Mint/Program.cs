@@ -1,10 +1,12 @@
-﻿using ConsoleApplication.Template.Configuration;
+﻿using Cornucopias.Mint.Configuration;
+using Cornucopias.Mint.Contracts;
+using Cornucopias.Mint.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace ConsoleApplication.Template
+namespace Cornucopias.Mint
 {
     class Program
     {
@@ -12,8 +14,10 @@ namespace ConsoleApplication.Template
         {
 
             var host = CreateHostBuilder(args).Build();
-            var configuration = host.Services.GetService<ApplicationConfiguration>();
-            var logger = host.Services.GetService<ILogger<Program>>();
+
+            var businessService = host.Services.GetService<IBusinessService>();
+            await businessService.MintAsync();
+
             host.Run();
         }
 
@@ -37,6 +41,11 @@ namespace ConsoleApplication.Template
                     {
                         
                         services.AddSingleton(appconfiguration);
+
+                        //services
+                        services.AddSingleton<ICaptchaService, CaptchaService>();                        
+                        services.AddHttpClient<ICornucopiasService, CornucopiasService>();
+                        services.AddSingleton<IBusinessService, BusinessService>();
 
                         //Logging
                         services.AddLogging();

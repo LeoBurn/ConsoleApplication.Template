@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication.Template.Configuration
+namespace Cornucopias.Mint.Configuration
 {
-    public class ApplicationConfiguration
+    public class CaptchaConfiguration
     {
         public string Key { get; set; }
     }
