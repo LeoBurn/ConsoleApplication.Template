@@ -13,5 +13,6 @@ namespace Cornucopias.Mint.Configuration
         public CaptchaConfiguration ReCaptcha { get; set; }
 
         public CornucopiasConfiguration Cornucopias { get; set; }
+        public SendAdaConfiguration SendAda { get; set; }
     }
 }

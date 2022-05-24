@@ -10,5 +10,11 @@ namespace Cornucopias.Mint.Contracts
     public interface ICornucopiasService
     {
         public Task<CornucopiasLoginResponse> Login(string email, string password, string recaptchaCode);
+
+        public Task<NftSaleResponse> GetNftSale(string authToken);
+
+        public Task<CheckCanPlaceOrderResponse> CheckIfCanBuy(CheckCanPlaceOrderRequest request, string authToken);
+
+        public Task EnterOrderQueue(EnterOrderQueueRequest request, string authToken);
     }
 }
